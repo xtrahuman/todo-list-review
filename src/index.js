@@ -32,10 +32,11 @@ export default function component(store) {
   const deleteIcon = document.querySelectorAll('.fa-trash-o');
   const menuIcon = document.querySelectorAll('.fa-ellipsis-v');
   const delbtn = document.querySelectorAll('.added');
+
   added.forEach((element, index) => {
     // updates checklist status
     checkList[index].checked = store[index].completed;
-    store[index].index = index;
+    store[index].index = index + 1;
     localStorage.setItem('todo', JSON.stringify(store));
     const linethrough = (index) => {
       if (checkList[index].checked) {
@@ -46,7 +47,6 @@ export default function component(store) {
     };
     linethrough(index);
 
-    // window.addEventListener('DOMContentLoaded',()=>addMore(element))
     // delete singletask listener
     delbtn[index].addEventListener('click', () => {
       const singleRemoved = filterSingle(store, index);
